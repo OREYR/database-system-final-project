@@ -1,4 +1,4 @@
-package net.clientmanagement.model;
+package net.insurancemanagement.model;
 
 public class Client {
 	protected int id;
@@ -6,38 +6,44 @@ public class Client {
 	protected String firstName;
 	protected String middleInitial;
 	protected String birthDate;
+	protected int age;
 	protected String gender;
 	protected String ssn;
 	protected String mailAddress;
+	protected Double fraudRate;
 	
 	public Client() {
 	}
 	
 	
-	public Client(int id, String lastName, String firstName, String middleInitial, String birthDate, String gender,
-			String ssn, String mailAddress) {
+	public Client(int id, String lastName, String firstName, String middleInitial, String birthDate, 
+			int age, String gender, String ssn, String mailAddress, Double fraudRate) {
 		super();
 		this.id = id;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.middleInitial = middleInitial;
 		this.birthDate = birthDate;
+		this.age = age;
 		this.gender = gender;
 		this.ssn = ssn;
 		this.mailAddress = mailAddress;
+		this.fraudRate = fraudRate;
 	}
 	
 	
-	public Client(String lastName, String firstName, String middleInitial, String birthDate, String gender, String ssn,
-			String mailAddress) {
+	public Client(String lastName, String firstName, String middleInitial, String birthDate, 
+			int age, String gender, String ssn, String mailAddress, Double fraudRate) {
 		super();
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.middleInitial = middleInitial;
 		this.birthDate = birthDate;
+		this.age = age;
 		this.gender = gender;
 		this.ssn = ssn;
 		this.mailAddress = mailAddress;
+		this.fraudRate = fraudRate;
 	}
 
 
@@ -71,6 +77,12 @@ public class Client {
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
 	public String getGender() {
 		return gender;
 	}
@@ -89,6 +101,11 @@ public class Client {
 	public void setMailAddress(String mailAddress) {
 		this.mailAddress = mailAddress;
 	}
-	
+	public Double getFraudRate() {
+		return fraudRate;
+	}
+	public void setFraudRate(Double fraudRate) {
+		this.fraudRate = fraudRate;
+	}
 	
 }
