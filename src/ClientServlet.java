@@ -1,4 +1,4 @@
-package net.clientmanagement.web;
+package net.insurancemanagement.web;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.clientmanagement.dao.ClientDAO;
-import net.clientmanagement.model.Client;
+import net.insurancemanagement.dao.ClientDAO;
+import net.insurancemanagement.model.Client;
 
 
 @WebServlet("/")
@@ -89,12 +89,14 @@ public class ClientServlet extends HttpServlet {
 		String firstName = request.getParameter("firstName");
 		String middleInitial = request.getParameter("middleInitial");
 		String birthDate = request.getParameter("birthDate");
+		int age = Integer.parseInt(request.getParameter("age"));
 		String gender = request.getParameter("gender");
 		String ssn = request.getParameter("ssn");
 		String mailAddress = request.getParameter("mailAddress");
+		Double fraudRate = Double.parseDouble(request.getParameter("fraudRate"));
 		
 		Client newClient = new Client(lastName, firstName, middleInitial,
-				birthDate, gender, ssn, mailAddress);
+				birthDate, age, gender, ssn, mailAddress, fraudRate);
 		clientDAO.insertClient(newClient);
 		response.sendRedirect("list");
 	}
@@ -106,12 +108,14 @@ public class ClientServlet extends HttpServlet {
 		String firstName = request.getParameter("firstName");
 		String middleInitial = request.getParameter("middleInitial");
 		String birthDate = request.getParameter("birthDate");
+		int age = Integer.parseInt(request.getParameter("age"));
 		String gender = request.getParameter("gender");
 		String ssn = request.getParameter("ssn");
 		String mailAddress = request.getParameter("mailAddress");
+		Double fraudRate = Double.parseDouble(request.getParameter("fraudRate"));
 
 		Client update = new Client(id, lastName, firstName, middleInitial,
-				birthDate, gender, ssn, mailAddress);
+				birthDate, age, gender, ssn, mailAddress, fraudRate);
 		clientDAO.updateClient(update);
 		response.sendRedirect("list");
 	}
