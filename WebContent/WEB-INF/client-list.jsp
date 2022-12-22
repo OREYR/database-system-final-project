@@ -116,9 +116,11 @@
 						<th>First Name</th>
 						<th>Middle Initial</th>
 						<th>Birth Date</th>
+						<th>Age</th>
 						<th>Gender</th>
 						<th>SSN</th>
 						<th>Mail Address</th>
+						<th>Fraud Rate</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -132,9 +134,11 @@
 							<td><c:out value="${client.firstName}" /></td>
 							<td><c:out value="${client.middleInitial}" /></td>
 							<td><c:out value="${client.birthDate}" /></td>
+							<td><c:out value="${client.age}" /></td>
 							<td><c:out value="${client.gender}" /></td>
 							<td><c:out value="${client.ssn}" /></td>
 							<td><c:out value="${client.mailAddress}" /></td>
+							<td><c:out value="${client.fraudRate}" /></td>
 							<td><a href="edit?id=<c:out value='${client.id}'/>" class="btn-body">Edit</a>
 								&nbsp; <a
 								href="delete?id=<c:out value='${client.id}'/>" class="btn-body">Delete</a></td>
