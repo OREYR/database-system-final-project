@@ -1,4 +1,4 @@
-package net.clientmanagement.dao;
+package net.insurancemanagement.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,24 +8,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.clientmanagement.model.Client;
+import net.insurancemanagement.model.Client;
 
 
 public class ClientDAO {
 	
-	String jdbcURL = "jdbc:mysql://127.0.0.1:3306/customer?useSSL=false";
+	String jdbcURL = "jdbc:mysql://127.0.0.1:3306/insurance_claim?useSSL=false";
 	String jdbcUsername = "root";
-    String jdbcPassword = "20220421";
+    	String jdbcPassword = "20220421";
 	
 	private static final String INSERT_CLIENT_SQL = "INSERT INTO client" + "  (lastName, firstName, middleInitial,"
-			+ "birthDate, gender, ssn, mailAddress) VALUES "
-			+ " (?, ?, ?, ?, ?, ?, ?);";
+			+ "birthDate, age, gender, ssn, mailAddress, fraudRate) VALUES "
+			+ " (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	private static final String SELECT_CLIENT_BY_ID = "select id, lastName, firstName, middleInitial,"
-			+ "birthDate, gender, ssn, mailAddress from client where id =?";
+			+ "birthDate, age, gender, ssn, mailAddress, fraudRate from client where id =?";
 	private static final String SELECT_ALL_CLIENTS = "select * from client";
 	private static final String DELETE_CLIENT_SQL = "delete from client where id = ?;";
 	private static final String UPDATE_CLIENT_BY_ID = "update client set lastName = ?, firstName = ?, middleInitial = ?, "
-			+ "birthDate = ?, gender = ?, ssn = ?, mailAddress = ? where id = ?;";
+			+ "birthDate = ?, age = ?, gender = ?, ssn = ?, mailAddress = ?,  fraudRate = ? where id = ?;";
 	
 	public ClientDAO() {
 	}
@@ -53,9 +53,11 @@ public class ClientDAO {
 			preparedStatement.setString(2, client.getFirstName());
 			preparedStatement.setString(3, client.getMiddleInitial());
 			preparedStatement.setString(4, client.getBirthDate());
-			preparedStatement.setString(5, client.getGender());
-			preparedStatement.setString(6, client.getSsn());
-			preparedStatement.setString(7, client.getMailAddress());
+			preparedStatement.setInt(5, client.getAge());
+			preparedStatement.setString(6, client.getGender());
+			preparedStatement.setString(7, client.getSsn());
+			preparedStatement.setString(8, client.getMailAddress());
+			preparedStatement.setDouble(9, client.getFraudRate());
 			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -76,11 +78,13 @@ public class ClientDAO {
 				String firstName = rs.getString("firstName");
 				String middleInitial = rs.getString("middleInitial");
 				String birthDate = rs.getString("birthDate");
+				int age = rs.getInt("age");
 				String gender = rs.getString("gender");
 				String ssn = rs.getString("ssn");
 				String mailAddress = rs.getString("mailAddress");
+				Double fraudRate = rs.getDouble("fraudRate");
 				client = new Client(id, lastName, firstName, middleInitial,
-						birthDate, gender, ssn, mailAddress);
+						birthDate, age, gender, ssn, mailAddress, fraudRate);
 			}
 		} catch (SQLException e) {
 			printSQLException(e);
@@ -107,12 +111,14 @@ public class ClientDAO {
 				String firstName = rs.getString("firstName");
 				String middleInitial = rs.getString("middleInitial");
 				String birthDate = rs.getString("birthDate");
+				int age= rs.getInt("age");
 				String gender = rs.getString("gender");
 				String ssn = rs.getString("ssn");
 				String mailAddress = rs.getString("mailAddress");
+				Double fraudRate = rs.getDouble("fraudRate");
 				
 				clients.add(new Client(id, lastName, firstName, middleInitial,
-						birthDate, gender, ssn, mailAddress));
+						birthDate, age, gender, ssn, mailAddress, fraudRate));
 			}
 		} catch (SQLException e) {
 			printSQLException(e);
@@ -138,10 +144,12 @@ public class ClientDAO {
 			statement.setString(2, client.getFirstName());
 			statement.setString(3, client.getMiddleInitial());
 			statement.setString(4, client.getBirthDate());
-			statement.setString(5, client.getGender());
-			statement.setString(6, client.getSsn());
-			statement.setString(7, client.getMailAddress());
-			statement.setInt(8, client.getId());
+			statement.setInt(5, client.getAge());
+			statement.setString(6, client.getGender());
+			statement.setString(7, client.getSsn());
+			statement.setString(8, client.getMailAddress());
+			statement.setDouble(9, client.getFraudRate());
+			statement.setInt(10, client.getId());
 
 			rowUpdated = statement.executeUpdate() > 0;
 		}
@@ -165,6 +173,3 @@ public class ClientDAO {
 	}
 
 }
-
-
-
