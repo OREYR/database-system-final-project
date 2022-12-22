@@ -1,3 +1,6 @@
 # Insurance Client Management Web Application
 
-### Dependency
+### Tools & Dependency
+
+* IDE: Eclipse
+* Database Server: MySQL Server + MySQL Workbench (create tables with query in the "sql/create-client-claim.sql")
