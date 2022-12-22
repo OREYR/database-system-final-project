@@ -114,6 +114,12 @@
 				</fieldset>
 				<br>
 				<fieldset>
+					<label>Client Age</label><input type="text"
+						value="<c:out value='${client.age}' />" 
+						name="age">
+				</fieldset>
+				<br>
+				<fieldset>
 					<label>Client Gender</label> <input type="text"
 						value="<c:out value='${client.gender}' />"
 						name="gender">
@@ -129,6 +135,12 @@
 					<label>Client  Mailing Address</label> <input type="text"
 						value="<c:out value='${client.mailAddress}' />"
 						name="mailAddress">
+				</fieldset>
+				<br>
+				<fieldset>
+					<label>Client Fraud Rate</label> <input type="text"
+						value="<c:out value='${client.fraudRate}' />"
+						name="fraudRate">
 				</fieldset>
 				<br>
 				<button type="submit" class="btn">Save</button>
