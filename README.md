@@ -1,9 +1,3 @@
-# Client Management Web Application
+# Insurance Client Management Web Application
 
-### Background
-
-### Components
-#### Demonstration
-
-### Reference
-#### Changes Made
+### Dependency
